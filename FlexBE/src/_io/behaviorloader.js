@@ -28,6 +28,9 @@ BehaviorLoader = new (function() {
 		var sm = ModelGenerator.buildStateMachine("", result.root_sm_name, result.sm_defs, result.sm_states);
 		Behavior.setStatemachine(sm);
 		UI.Statemachine.resetStatemachine();
+
+		UI.Dashboard.setBehaviorSemanticProperties(result.behavior_semantic_props, sm.getAccumulatedSemanticProperties());
+
 		T.logInfo("Behavior state machine built.");
 		
 		ActivityTracer.resetActivities();
@@ -177,7 +180,8 @@ BehaviorLoader = new (function() {
 													container_name: "",
 													container_sm_var_name: parsingResult.root_sm_name,
 													sm_defs: parsingResult.sm_defs,
-													sm_states: parsingResult.sm_states
+													sm_states: parsingResult.sm_states,
+													container_semantic_properties: parsingResult.behavior_semantic_props
 												});
 											});
 										}, 

@@ -284,7 +284,6 @@ UI.Menu = new (function() {
 
 	this.loadBehaviorClicked = function() {
 		if (RC.Controller.isReadonly()) return;
-		
 		//BehaviorLoader.importBehavior();
 		UI.Panels.SelectBehavior.setSelectionCallback(function(manifest) {
 			BehaviorLoader.loadBehavior(manifest);

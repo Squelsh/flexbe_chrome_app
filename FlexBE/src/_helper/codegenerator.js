@@ -102,6 +102,13 @@ CodeGenerator = new (function() {
 			code += ws+ws+"self.add_behavior(" + contained_behaviors[i].getStateClass() + ", '" + contained_behaviors[i].getStatePath().substr(1) + "')\n";
 		}
 		code += "\n";
+
+		// semantic properties
+		code += ws+ws+"# semantic properties of this behavior\n";
+		code += ws+ws+"self._semantic_properties = [" + Behavior.getSemanticProperties() + "]\n";
+		code += "\n";
+
+
 		// manual
 		code += ws+ws+"# Additional initialization code can be added inside the following tags\n";
 		code += ws+ws+"# [MANUAL_INIT]";

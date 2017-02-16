@@ -51,6 +51,9 @@ CodeParser = new (function() {
 		// Gets the behavior name
 		// [1] - name
 	var behavior_name_pattern = /^\s*self\.name ?= ?['"]([^'"]*)['"]\s*$/im;
+		// Gets the behavior semantic properties
+		// [1] - list of comma seperated strings
+	var behavior_semantic_props_pattern = /^\s*self\._semantic_properties ?= ?\[(.*)\]\s*$/m;
 		// Removes all comments
 	var remove_comment_pattern = /#.*$/img;
 		// Removes parameters (use from manifest)
@@ -216,6 +219,11 @@ CodeParser = new (function() {
 		var behavior_name = (behavior_name_result != null)? behavior_name_result[1] : "";
 		code = code.replace(behavior_name_pattern, "");
 
+		// get behavior semantic properties
+		var behavior_semantic_props_result = code.match(behavior_semantic_props_pattern);
+		var behavior_semantic_props = (behavior_semantic_props_result != null)? behavior_semantic_props_result[1] : "";
+		code = code.replace(behavior_semantic_props_pattern, "");
+
 		var comments_split = code.split(comments_split_pattern);
 		code = comments_split[0];
 		var comments = [];
@@ -248,6 +256,7 @@ CodeParser = new (function() {
 
 		return {
 			behavior_name: behavior_name,
+			behavior_semantic_props: behavior_semantic_props,
 			additional_init: additional_init,
 			comments: comments
 		}
@@ -618,8 +627,9 @@ CodeParser = new (function() {
 
 		return {
 			behavior_name: 			init_result.behavior_name,
-			behavior_description: 	behavior_description,
-			author: 				top_result.behavior_author,
+			behavior_description: 		behavior_description,
+			behavior_semantic_props:	init_result.behavior_semantic_props,
+			author: 			top_result.behavior_author,
 			creation_date: 			top_result.behavior_date,
 			behavior_comments: 		init_result.comments,
 

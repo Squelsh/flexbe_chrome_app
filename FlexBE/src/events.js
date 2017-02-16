@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('input_behavior_tags').addEventListener('blur', UI.Dashboard.behaviorTagsChanged);
     document.getElementById('input_behavior_author').addEventListener('blur', UI.Dashboard.behaviorAuthorChanged);
     document.getElementById('input_behavior_date').addEventListener('blur', UI.Dashboard.behaviorDateChanged);
+    document.getElementById('input_semantic_props').addEventListener('blur', UI.Dashboard.semanticPropertiesChanged);
 
     document.getElementById('behavior_sourcecode_edit').addEventListener('dragstart', function(evt) {
         n = this.getAttribute("cmd");

@@ -296,6 +296,19 @@
 			</table>
 		</div>
 
+		<div class="box">
+			<h1>Behavior Semantic Properties</h1>
+			<font style="color: gray">
+				Add semantic properties as a comma seperated list of items ("strings" and/or numbers). 
+				They will get concatenated with the properties of all states.</font>
+			<table class="box_table"><tr><td>
+				<input id="input_semantic_props" type="text" class="input_field" />
+			</td></tr></table>
+			<font style="color: gray">
+				The following is an accumulated list of the semantic properties of all states used in this behavior:</font>
+			<div id="accumulated_semantic_props"></div>
+		</div>
+
 		<div id="db_readonly_overlay" style="display: none; width: 100%; height: 100%; background-color: rgba(100, 150, 255, 0.1); position: absolute; top:0; left:0; z-index:2;">
 			<div style="width: 100%; position: absolute; bottom:25px; left:0; z-index:1; text-align: center; font-size: 14pt; color: #57a;">
 				Behavior is running! --- Read-Only Mode
@@ -631,6 +644,12 @@
 					
 				</table>
 			</div>
+			<div id="panel_prop_semantic_props" class="sidepanel_category">
+				<b>Semantic Properties</b>
+				<table id="panel_prop_semantic_props_content" class="sidepanel_table">
+					
+				</table>
+			</div>
 
 			<input id="button_apply_properties" type="button" value="Apply" />
 			<input id="button_close_properties" type="button" value="Close" />
@@ -663,6 +682,13 @@
 			<div id="panel_prop_be_output_keys" class="sidepanel_category">
 				<b>Output Key Mapping</b>
 				<table id="panel_prop_be_output_keys_content" class="sidepanel_table">
+					
+				</table>
+			</div>
+
+			<div id="panel_prop_be_semantic_props" class="sidepanel_category">
+				<b>Accumulated Semantic Properties</b>
+				<table id="panel_prop_be_semantic_props_content" class="sidepanel_table">
 					
 				</table>
 			</div>

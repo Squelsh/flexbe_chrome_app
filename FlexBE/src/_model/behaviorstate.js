@@ -7,6 +7,8 @@ BehaviorState = function(be_name, be_definition) {
 	var behavior_statemachine = be_definition.cloneBehaviorStatemachine();
 	behavior_statemachine.setBehavior(that);
 
+	var behavior_semantic_properties = be_definition.getBehaviorSemanticProperties();
+
 	this.getBehaviorName = function() {
 		return behavior_name;
 	}
@@ -17,6 +19,14 @@ BehaviorState = function(be_name, be_definition) {
 
 	this.getBehaviorManifest = function() {
 		return behavior_manifest;
+	}
+
+	this.getSemanticProperties = function() { 
+		var accumulated_props = behavior_semantic_properties + ", ";
+		for (var value of behavior_statemachine.getAccumulatedSemanticProperties().values()) {
+			accumulated_props += value + ", ";
+		}
+		return accumulated_props;
 	}
 	
 };

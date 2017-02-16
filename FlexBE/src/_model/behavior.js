@@ -14,6 +14,8 @@ Behavior = new (function() {
 
 	var behavior_parameters = [];	// {type, name, default, label, hint, additional}
 
+	var semantic_properties = [];
+
 	var interface_outcomes = [];
 	var interface_input_keys = [];
 	var interface_output_keys = [];
@@ -34,7 +36,12 @@ Behavior = new (function() {
 	this.setBehaviorName = function(_behavior_name) {
 		behavior_name = _behavior_name;
 	}
-
+	this.getSemanticProperties = function() {
+		return semantic_properties;
+	}
+	this.setSemanticProperties = function(_semantic_properties) {
+		semantic_properties = _semantic_properties;
+	}
 	this.getBehaviorDescription = function() {
 		return behavior_description;
 	}
@@ -272,6 +279,8 @@ Behavior = new (function() {
 		private_variables = [];		// {key, value}
 		default_userdata = [];		// {key, value} 
 		private_functions = [];		// {name, params}
+
+		semantic_properties = [];
 
 		behavior_parameters = [];	// {type, name, default, label, hint, additional}
 

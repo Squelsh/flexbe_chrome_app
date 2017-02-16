@@ -988,10 +988,9 @@ UI.Dashboard = new (function() {
 		return {default: default_value, additional: additional};
 	}
 
-
 	//
-	//  Interface
-	// ===========
+	//  Read Only Overlay
+	// ===================
 
 	this.setReadonly = function() {
 		document.getElementById('db_readonly_overlay').style.display = 'block';
@@ -1000,6 +999,10 @@ UI.Dashboard = new (function() {
 	this.unsetReadonly = function() {
 		document.getElementById('db_readonly_overlay').style.display = 'none';
 	}
+
+	//
+	//  Interface
+	// ===========
 
 	this.behaviorNameChanged = function() {
 		var old_name = Behavior.getBehaviorName();
@@ -1116,7 +1119,41 @@ UI.Dashboard = new (function() {
 		that.behaviorDateChanged();
 	}
 
+	//
+	//  Semantic Properties
+	// =====================
 
+	this.semanticPropertiesChanged = function() {
+		var old_semantic_props = Behavior.getSemanticProperties();
+		var new_semantic_props = document.getElementById('input_semantic_props').value;
+		if (old_semantic_props == new_semantic_props) return;
+
+		var activity_text = (old_semantic_props == "")? "Set sematic properties of behavior to " + new_semantic_props :
+								(new_semantic_props == "")? "Deleted sematic properties of behavior " :
+								"Changed sematic properties of behavior from " + old_semantic_props + " to " + new_semantic_props;
+
+		ActivityTracer.addActivity(ActivityTracer.ACT_BEHAVIOR_INTERFACE_CHANGE,
+			activity_text,
+			function() { Behavior.setSemanticProperties(old_semantic_props); document.getElementById('input_semantic_props').value = Behavior.getSemanticProperties(); },
+			function() { Behavior.setSemanticProperties(new_semantic_props); document.getElementById('input_semantic_props').value = Behavior.getSemanticProperties(); }
+		);
+
+		Behavior.setSemanticProperties(new_semantic_props);
+	}
+
+	this.setBehaviorSemanticProperties = function(behaviors_props, sm_accumulated_props) {
+		document.getElementById('input_semantic_props').value = behaviors_props;
+		
+		for (var [key, value] of sm_accumulated_props) {
+			document.getElementById('accumulated_semantic_props').innerHTML += key + " : " + value + " <br>";
+		};
+		that.semanticPropertiesChanged();
+	}
+
+
+	//
+	//  Helper functions
+	// ===================
 	this.addPrivateVariable = function(new_key, new_value) {
 		_addPrivateVariable(new_key, new_value);
 	}
@@ -1205,6 +1242,7 @@ UI.Dashboard = new (function() {
 		document.getElementById('input_behavior_description').value = "";
 		document.getElementById('input_behavior_tags').value = "";
 		document.getElementById('input_behavior_author').value = "";
+		document.getElementById('input_semantic_props').value = "";
 		var current_date_string = (new Date()).toDateString();
 		document.getElementById('input_behavior_date').value = current_date_string;
 		Behavior.setCreationDate(current_date_string);
@@ -1220,6 +1258,7 @@ UI.Dashboard = new (function() {
 		document.getElementById('db_outcome_table').innerHTML = "";
 		document.getElementById('db_input_key_table').innerHTML = "";
 		document.getElementById('db_output_key_table').innerHTML = "";
+		document.getElementById('accumulated_semantic_props').innerHTML = "";
 
 		// also reset input fields?
 		// currently not

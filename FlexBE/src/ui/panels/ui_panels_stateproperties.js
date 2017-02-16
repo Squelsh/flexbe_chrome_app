@@ -251,6 +251,30 @@ UI.Panels.StateProperties = new (function() {
 			document.getElementById("panel_prop_output_keys").style.display = "none";
 			document.getElementById("panel_prop_output_keys_content").innerHTML = "";
 		}
+
+
+
+
+
+		var semantic_properties = state.getSemanticProperties();
+		if (semantic_properties != "") {
+			document.getElementById("panel_prop_semantic_props").style.display = "block";
+			document.getElementById("panel_prop_semantic_props_content").innerHTML = "";
+			
+			var txt = document.createTextNode(semantic_properties);
+
+			document.getElementById("panel_prop_semantic_props_content").appendChild(txt);
+
+			//addHoverDocumentation(tr, "semantic_props", output_keys[i], state.getStateClass());
+
+		} else {
+			document.getElementById("panel_prop_semantic_props").style.display = "none";
+			document.getElementById("panel_prop_semantic_props_content").innerHTML = "";
+		}
+
+
+
+
 	}
 
 	var displayPropertiesForStatemachine = function(state) {
@@ -521,6 +545,24 @@ UI.Panels.StateProperties = new (function() {
 			}
 		} else {
 			document.getElementById("panel_prop_be_output_keys").style.display = "none";
+		}
+
+		// Semantic Properties
+		//---------------------
+		var semantic_properties = state.getSemanticProperties();
+		if (semantic_properties != "") {
+			document.getElementById("panel_prop_be_semantic_props").style.display = "block";
+			document.getElementById("panel_prop_be_semantic_props_content").innerHTML = "";
+			
+			var txt = document.createTextNode(semantic_properties);
+
+			document.getElementById("panel_prop_be_semantic_props_content").appendChild(txt);
+
+			//addHoverDocumentation(tr, "semantic_props", output_keys[i], state.getStateClass());
+
+		} else {
+			document.getElementById("panel_prop_be_semantic_props").style.display = "none";
+			document.getElementById("panel_prop_be_semantic_props_content").innerHTML = "";
 		}
 	}
 

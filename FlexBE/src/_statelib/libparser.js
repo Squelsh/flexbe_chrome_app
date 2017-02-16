@@ -47,10 +47,17 @@ LibParser = new (function() {
 		var list_pattern = /(\w+)=\[(.*)\]/i;
 			// Finds conditions to be monitored
 		var monitor_pattern = /^\s*self\.monitor\(.+?,\s*["']([A-Z_0-9]+)["']\)/igm;
+			// Gets the behavior semantic properties
+			// [1] - list of comma seperated strings
+		var semantic_props_pattern = /^\s*self\._semantic_properties ?= ?\[(.*)\]\s*$/m;
 
 		var name_desc_results = content.match(name_desc_pattern);
 		if (name_desc_results == null) return;
 		var state_class = name_desc_results[1];
+
+		// get behavior semantic properties
+		var state_semantic_props_result = content.match(semantic_props_pattern);
+		var state_semantic_props = (state_semantic_props_result != null)? state_semantic_props_result[1] : "";
 
 		var state_desc = "";
 		var argument_doc = [];
@@ -207,7 +214,8 @@ LibParser = new (function() {
 			state_output,
 			state_params_values,
 			state_autonomy,
-			class_vars
+			class_vars,
+			state_semantic_props
 		));
 	}
 

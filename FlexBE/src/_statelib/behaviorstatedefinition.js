@@ -16,7 +16,7 @@ BehaviorStateDefinition = function(manifest, outcomes, input_keys, output_keys) 
 	});
 
 	this.__proto__ = new StateDefinition(manifest.class_name, new Documentation(manifest.description),
-		path, [], outcomes, input_keys, output_keys, [], autonomy, []);
+		path, [], outcomes, input_keys, output_keys, [], autonomy, [], "");
 
 	this.getBehaviorName = function() { return behavior_name; }
 	this.getBehaviorManifest = function() { return behavior_manifest; }
@@ -26,4 +26,9 @@ BehaviorStateDefinition = function(manifest, outcomes, input_keys, output_keys) 
 		return ModelGenerator.buildStateMachine(bsm_parsing_result.container_name, bsm_parsing_result.container_sm_var_name, 
 												bsm_parsing_result.sm_defs, bsm_parsing_result.sm_states, true);
 	}
+
+	this.getBehaviorSemanticProperties = function() {
+		return bsm_parsing_result.container_semantic_properties;
+	}
+
 };

@@ -7,7 +7,7 @@ StateMachineDefinition = function(outcomes, input_keys, output_keys) {
 	};
 
 	this.__proto__ = new StateDefinition(":STATEMACHINE", undefined, "", [], 
-		outcomes, input_keys, output_keys, [], autonomy, []);
+		outcomes, input_keys, output_keys, [], autonomy, [], "");
 
 	outcomes = that.getOutcomes();
 

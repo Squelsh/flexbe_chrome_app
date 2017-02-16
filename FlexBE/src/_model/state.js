@@ -212,6 +212,11 @@ State = function(state_name, state_def) {
 	this.getParameters = function() {
 		return parameters;
 	}
+
+	this.getSemanticProperties = function() {
+		return state_def.getSemanticProperties();
+	}
+
 	this.setParameters = function(_parameters) {
 		parameters = _parameters;
 	}

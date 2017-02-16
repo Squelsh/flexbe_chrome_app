@@ -1,4 +1,4 @@
-StateDefinition = function(state_class, state_desc, state_path, parameters, outcomes, input_keys, output_keys, parameter_values, autonomy, class_vars) {
+StateDefinition = function(state_class, state_desc, state_path, parameters, outcomes, input_keys, output_keys, parameter_values, autonomy, class_vars, semantic_properties) {
 	var that = this;
 
 	var state_class = state_class;
@@ -11,6 +11,7 @@ StateDefinition = function(state_class, state_desc, state_path, parameters, outc
 	var default_parameter_values = parameter_values;
 	var default_autonomy = autonomy;
 	var class_vars;
+	var semantic_properties = semantic_properties;
 
 
 	this.getStateClass = function() { return state_class; }
@@ -23,6 +24,7 @@ StateDefinition = function(state_class, state_desc, state_path, parameters, outc
 	this.getOutputKeys = function() { return output_keys; }
 	this.getDefaultParameterValues = function() { return default_parameter_values; }
 	this.getDefaultAutonomy = function() { return default_autonomy; }
+	this.getSemanticProperties = function() { return semantic_properties; }
 
 	this.getParamDesc = function() { return state_desc.getParams(); }
 	this.getInputDesc = function() { return state_desc.getInput(); }

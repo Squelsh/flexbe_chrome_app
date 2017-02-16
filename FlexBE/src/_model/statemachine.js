@@ -191,6 +191,18 @@ Statemachine = function(sm_name, sm_definition) {
 	}
 
 
+	// Semantic Properties
+	this.getAccumulatedSemanticProperties = function(name) {
+		var accumulated_semantic_properties = new Map(); // Dictionary of state names and according semantic props
+		for(var i=0; i<states.length; ++i) {
+			if(states[i].getSemanticProperties() != "")
+			{
+				accumulated_semantic_properties.set(states[i].getStateName(), states[i].getSemanticProperties());
+			}
+		}
+		return accumulated_semantic_properties;
+	}
+
 	// Interface
 	this.getSMOutcomes = function() {
 		return sm_outcomes;
